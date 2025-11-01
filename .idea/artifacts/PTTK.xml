@@ -1,0 +1,7 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="PTTK">
+    <root id="root">
+      <element id="module-output" name="PTTK" />
+    </root>
+  </artifact>
+</component>

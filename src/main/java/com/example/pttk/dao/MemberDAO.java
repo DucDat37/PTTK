@@ -1,0 +1,94 @@
+package com.example.pttk.dao;
+
+import com.example.pttk.model.Member;
+
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
+
+public class MemberDAO extends DAO {
+
+    public boolean createMember(Member member) {
+        String sql = "INSERT INTO member (fullName, gender, dob, phone, email, address, password) VALUES (?, ?, ?, ?, ?, ?, ?)";
+
+        try (PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setString(1, member.getFullName());
+            ps.setString(2, member.getGender());
+            ps.setString(3, member.getDob());
+            ps.setString(4, member.getPhone());
+            ps.setString(5, member.getEmail());
+            ps.setString(6, member.getAddress());
+            ps.setString(7, member.getPassword());
+
+            int rows = ps.executeUpdate();
+            return rows > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public Member checkLogin(String email, String password) {
+        String sql = "SELECT * FROM member WHERE email = ? AND password = ?";
+        try (PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setString(1, email);
+            ps.setString(2, password);
+
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                Member m = new Member();
+                m.setIdMember(rs.getInt("idMember"));
+                m.setFullName(rs.getString("fullName"));
+                m.setGender(rs.getString("gender"));
+                m.setDob(rs.getString("dob"));
+                m.setPhone(rs.getString("phone"));
+                m.setEmail(rs.getString("email"));
+                m.setAddress(rs.getString("address"));
+                m.setPassword(rs.getString("password"));
+                return m;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public boolean isManager(int idMember) {
+        String sql = "SELECT * FROM manager WHERE idMember = ?";
+        try (PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setInt(1, idMember);
+            ResultSet rs = ps.executeQuery();
+            return rs.next(); // Có dữ liệu => là quản lý
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+
+
+    // Lấy toàn bộ danh sách thành viên
+    public List<Member> getAllMembers() {
+        List<Member> list = new ArrayList<>();
+        String sql = "SELECT * FROM member";
+
+        try (Statement st = conn.createStatement()) {
+            ResultSet rs = st.executeQuery(sql);
+            while (rs.next()) {
+                Member m = new Member();
+                m.setFullName(rs.getString("fullName"));
+                m.setGender(rs.getString("gender"));
+                m.setDob(rs.getString("dob"));
+                m.setPhone(rs.getString("phone"));
+                m.setEmail(rs.getString("email"));
+                m.setAddress(rs.getString("address"));
+                m.setPassword(rs.getString("password"));
+                list.add(m);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+}
+

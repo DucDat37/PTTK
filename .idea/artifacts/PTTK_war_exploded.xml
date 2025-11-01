@@ -1,0 +1,17 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="PTTK:war exploded">
+    <output-path>$PROJECT_DIR$/out/artifacts/PTTK_war_exploded</output-path>
+    <root id="root">
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="PTTK" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="file-copy" path="$USER_HOME$/Downloads/mysql-connector-j-9.4.0/mysql-connector-j-9.4.0/mysql-connector-j-9.4.0.jar" />
+        </element>
+      </element>
+      <element id="javaee-facet-resources" facet="PTTK/web/Web" />
+      <element id="file-copy" path="$USER_HOME$/Downloads/mysql-connector-j-9.4.0/mysql-connector-j-9.4.0/mysql-connector-j-9.4.0.jar" />
+    </root>
+  </artifact>
+</component>
