@@ -15,19 +15,18 @@
     <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/assets/images/add-to-cart.png">
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-
 <body class="bg-gray-50 flex flex-col min-h-screen">
 
 <!-- HEADER -->
 <header class="bg-blue-700 text-white px-8 py-4 flex justify-between items-center shadow-md">
     <h1 class="text-2xl font-bold">⚡ Điện Máy Online</h1>
     <nav class="flex items-center space-x-6">
-        <a href="home.jsp" class="hover:text-yellow-300">Trang chủ</a>
-        <a href="product.jsp" class="hover:text-yellow-300">Sản phẩm</a>
-        <a href="about.jsp" class="hover:text-yellow-300">Giới thiệu</a>
-        <a href="contact.jsp" class="hover:text-yellow-300">Liên hệ</a>
+        <a href="${pageContext.request.contextPath}/Customer/home.jsp" class="hover:text-yellow-300">Trang chủ</a>
+        <a href="${pageContext.request.contextPath}/product.jsp" class="hover:text-yellow-300">Sản phẩm</a>
+        <a href="${pageContext.request.contextPath}/about.jsp" class="hover:text-yellow-300">Giới thiệu</a>
+        <a href="${pageContext.request.contextPath}/contact.jsp" class="hover:text-yellow-300">Liên hệ</a>
         <span class="border-l border-white pl-4">Xin chào, <b><%= userName %></b></span>
-        <a href="LogoutServlet" class="ml-4 bg-red-500 hover:bg-red-600 px-3 py-1 rounded">Đăng xuất</a>
+        <a href="${pageContext.request.contextPath}/LogoutServlet" class="ml-4 bg-red-500 hover:bg-red-600 px-3 py-1 rounded">Đăng xuất</a>
     </nav>
 </header>
 
@@ -139,3 +138,4 @@
 
 </body>
 </html>
+

@@ -10,6 +10,7 @@
         window.onload = function () {
             const status = "<%= request.getAttribute("status") %>";
             const message = "<%= request.getAttribute("message") %>";
+            const contextPath = "<%= request.getContextPath() %>";
             if (message && message !== "null") {
                 const popup = document.getElementById("popupMessage");
                 const popupText = document.getElementById("popupText");
@@ -19,7 +20,7 @@
                 if (status === "success") {
                     setTimeout(() => {
                         popup.classList.add("hidden");
-                        window.location.href = "login.jsp";
+                        window.location.href = contextPath + "/Customer/login.jsp";
                     }, 2000);
                 } else {
                     setTimeout(() => {
@@ -52,16 +53,16 @@
     <div class="w-4/5 max-w-md bg-white p-8 rounded-2xl shadow-2xl">
         <h2 class="text-2xl font-bold text-blue-600 text-center mb-6">Điền thông tin thành viên</h2>
 
-        <form action="RegisterServlet" method="post" class="space-y-4">
-            <input type="text" name="fullName" placeholder="Họ tên"
+        <form action="${pageContext.request.contextPath}/RegisterServlet" method="post" class="space-y-4">
+            <input type="text" name="fullName" placeholder="Họ tên *"
                    class="w-full px-4 py-1.5 border rounded-full shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500" required>
 
             <!-- Giới tính -->
             <div>
-                <label class="block mb-2 font-medium">Giới tính:</label>
+                <label class="block mb-2 font-medium">Giới tính: <span class="text-red-500">*</span></label>
                 <div class="flex space-x-6">
                     <label class="flex items-center">
-                        <input type="radio" name="gender" value="Nam" class="mr-2 accent-blue-500"> Nam
+                        <input type="radio" name="gender" value="Nam" class="mr-2 accent-blue-500" required> Nam
                     </label>
                     <label class="flex items-center">
                         <input type="radio" name="gender" value="Nữ" class="mr-2 accent-blue-500"> Nữ
@@ -71,24 +72,24 @@
 
             <!-- Ngày sinh -->
             <div>
-                <label class="block mb-2 font-medium">Ngày sinh:</label>
+                <label class="block mb-2 font-medium">Ngày sinh: <span class="text-red-500">*</span></label>
                 <input type="date" name="dob"
                        class="w-full px-4 py-2.5 border rounded-full shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500" required>
             </div>
 
-            <input type="text" name="phone" placeholder="Số điện thoại"
+            <input type="text" name="phone" placeholder="Số điện thoại *"
                    class="w-full px-4 py-2.5 border rounded-full shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500" required>
 
-            <input type="email" name="email" placeholder="Email"
+            <input type="email" name="email" placeholder="Email *"
                    class="w-full px-4 py-2.5 border rounded-full shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500" required>
 
-            <input type="text" name="address" placeholder="Địa chỉ"
+            <input type="text" name="address" placeholder="Địa chỉ *"
                    class="w-full px-4 py-2.5 border rounded-full shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500" required>
 
-            <input type="password" name="password" placeholder="Mật khẩu"
+            <input type="password" name="password" placeholder="Mật khẩu *"
                    class="w-full px-4 py-2.5 border rounded-full shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500" required>
 
-            <input type="password" name="confirmPassword" placeholder="Xác nhận mật khẩu"
+            <input type="password" name="confirmPassword" placeholder="Xác nhận mật khẩu *"
                    class="w-full px-4 py-2.5 border rounded-full shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500" required>
 
             <button type="submit"
@@ -99,7 +100,7 @@
 
         <p class="text-center text-sm text-gray-600 mt-6">
             Đã có tài khoản?
-            <a href="login.jsp" class="text-blue-600 font-medium hover:underline">Đăng nhập</a>
+            <a href="${pageContext.request.contextPath}/Customer/login.jsp" class="text-blue-600 font-medium hover:underline">Đăng nhập</a>
         </p>
     </div>
 </div>
@@ -127,3 +128,4 @@
 
 </body>
 </html>
+

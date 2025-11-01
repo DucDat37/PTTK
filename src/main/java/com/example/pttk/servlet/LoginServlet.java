@@ -34,14 +34,14 @@ public class LoginServlet extends HttpServlet {
                 RequestDispatcher dispatcher = request.getRequestDispatcher("Admin/gdChinhQL.jsp");
                 dispatcher.forward(request, response);
             } else {
-                RequestDispatcher dispatcher = request.getRequestDispatcher("home.jsp");
+                RequestDispatcher dispatcher = request.getRequestDispatcher("Customer/home.jsp");
                 dispatcher.forward(request, response);
             }
 
         } else {
             // Sai tài khoản hoặc mật khẩu
             request.setAttribute("errorMessage", "Sai email hoặc mật khẩu!");
-            RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("Customer/login.jsp");
             dispatcher.forward(request, response);
         }
     }

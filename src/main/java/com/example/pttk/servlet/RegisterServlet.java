@@ -15,7 +15,7 @@ public class RegisterServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-        req.getRequestDispatcher("register.jsp").forward(req, resp);
+        req.getRequestDispatcher("Customer/register.jsp").forward(req, resp);
     }
 
     @Override
@@ -34,21 +34,27 @@ public class RegisterServlet extends HttpServlet {
         if (!password.equals(confirmPassword)) {
             req.setAttribute("message", "Mật khẩu xác nhận không khớp!");
             req.setAttribute("status", "error");
-            req.getRequestDispatcher("register.jsp").forward(req, resp);
+            req.getRequestDispatcher("Customer/register.jsp").forward(req, resp);
             return;
         }
 
         Member member = new Member(fullName, gender, dob, phone, email, address, password);
-        boolean success = memberDAO.createMember(member);
+        String result = memberDAO.createMember(member);
 
-        if (success) {
+        if ("success".equals(result)) {
             req.setAttribute("message", "Đăng ký thành công!");
             req.setAttribute("status", "success");
+        } else if ("email_exists".equals(result)) {
+            req.setAttribute("message", "Email này đã được sử dụng");
+            req.setAttribute("status", "error");
+        } else if ("phone_exists".equals(result)) {
+            req.setAttribute("message", "Số điện thoại này đã được sử dụng");
+            req.setAttribute("status", "error");
         } else {
-            req.setAttribute("message", "Đăng ký thất bại!");
+            req.setAttribute("message", "Đăng ký thất bại! Vui lòng thử lại sau.");
             req.setAttribute("status", "error");
         }
 
-        req.getRequestDispatcher("register.jsp").forward(req, resp);
+        req.getRequestDispatcher("Customer/register.jsp").forward(req, resp);
     }
 }

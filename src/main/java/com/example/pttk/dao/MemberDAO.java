@@ -8,9 +8,35 @@ import java.util.List;
 
 public class MemberDAO extends DAO {
 
-    public boolean createMember(Member member) {
-        String sql = "INSERT INTO member (fullName, gender, dob, phone, email, address, password) VALUES (?, ?, ?, ?, ?, ?, ?)";
+    public String createMember(Member member) {
+        // Kiểm tra email đã tồn tại chưa
+        String checkEmailSql = "SELECT * FROM member WHERE email = ?";
+        try (PreparedStatement ps = conn.prepareStatement(checkEmailSql)) {
+            ps.setString(1, member.getEmail());
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                return "email_exists";
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return "error";
+        }
 
+        // Kiểm tra số điện thoại đã tồn tại chưa
+        String checkPhoneSql = "SELECT * FROM member WHERE phone = ?";
+        try (PreparedStatement ps = conn.prepareStatement(checkPhoneSql)) {
+            ps.setString(1, member.getPhone());
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                return "phone_exists";
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return "error";
+        }
+
+        // Thêm thành viên mới
+        String sql = "INSERT INTO member (fullName, gender, dob, phone, email, address, password) VALUES (?, ?, ?, ?, ?, ?, ?)";
         try (PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setString(1, member.getFullName());
             ps.setString(2, member.getGender());
@@ -21,10 +47,14 @@ public class MemberDAO extends DAO {
             ps.setString(7, member.getPassword());
 
             int rows = ps.executeUpdate();
-            return rows > 0;
+            if (rows > 0) {
+                return "success";
+            } else {
+                return "error";
+            }
         } catch (SQLException e) {
             e.printStackTrace();
-            return false;
+            return "error";
         }
     }
 

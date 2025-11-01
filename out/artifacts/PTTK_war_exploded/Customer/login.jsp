@@ -37,7 +37,7 @@
             Vui lòng đăng nhập để tiếp tục mua sắm cùng chúng tôi.
         </p>
 
-        <form action="LoginServlet" method="post" class="space-y-4">
+        <form action="${pageContext.request.contextPath}/LoginServlet" method="post" class="space-y-4">
             <input type="text" name="email" placeholder="Email"
                    class="w-full px-4 py-3 border rounded-full shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500" required>
 
@@ -60,10 +60,11 @@
 
         <p class="text-center text-sm text-gray-600 mt-6">
             Chưa có tài khoản?
-            <a href="RegisterServlet" class="text-blue-600 font-medium hover:underline">Đăng ký ngay</a>
+            <a href="${pageContext.request.contextPath}/RegisterServlet" class="text-blue-600 font-medium hover:underline">Đăng ký ngay</a>
         </p>
     </div>
 </div>
 
 </body>
 </html>
+
