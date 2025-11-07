@@ -20,7 +20,7 @@ public class CustomerStatisticsDAO extends DAO {
                         "    m.fullname AS customerName, " +
                         "    m.email, " +
                         "    m.phone, " +
-                        "    SUM(od.quantity * i.price) AS totalRevenue " +
+                        "    SUM(od.quantity * od.price) AS totalRevenue " +
                         "FROM `Order` o " +
                         "    JOIN OrderDetail od ON o.idOrder = od.idOrder " +
                         "    JOIN Item i ON od.idItem = i.idItem " +

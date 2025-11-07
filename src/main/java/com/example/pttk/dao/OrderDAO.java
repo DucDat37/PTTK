@@ -11,7 +11,7 @@ public class OrderDAO extends DAO {
         List<Order> orders = new ArrayList<>();
 
         String sql =
-                "SELECT o.idOrder, o.orderDate, SUM(od.quantity * i.price) AS totalAmount " +
+                "SELECT o.idOrder, o.orderDate, SUM(od.quantity * od.price) AS totalAmount " +
                         "FROM `Order` o " +
                         "JOIN OrderDetail od ON o.idOrder = od.idOrder " +
                         "JOIN Item i ON od.idItem = i.idItem " +
