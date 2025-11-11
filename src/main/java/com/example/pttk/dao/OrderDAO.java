@@ -7,7 +7,7 @@ import java.util.List;
 
 public class OrderDAO extends DAO {
 
-    public List<Order> getOrdersByCustomerAndDateRange(int idCustomer, String startDate, String endDate) {
+    public List<Order> getOrdersByCustomer(int idCustomer, String startDate, String endDate) {
         List<Order> orders = new ArrayList<>();
 
         String sql =

@@ -54,8 +54,11 @@
         <h2 class="text-2xl font-bold text-blue-600 text-center mb-6">Điền thông tin thành viên</h2>
 
         <form action="${pageContext.request.contextPath}/RegisterServlet" method="post" class="space-y-4">
-            <input type="text" name="fullName" placeholder="Họ tên *"
-                   class="w-full px-4 py-1.5 border rounded-full shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+            <div class="relative">
+                <input type="text" name="fullName" placeholder="Họ tên"
+                       class="w-full px-4 py-1.5 pr-6 border rounded-full shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                <span class="absolute right-4 top-1/2 transform -translate-y-1/2 text-red-500">*</span>
+            </div>
 
             <!-- Giới tính -->
             <div>
@@ -73,24 +76,42 @@
             <!-- Ngày sinh -->
             <div>
                 <label class="block mb-2 font-medium">Ngày sinh: <span class="text-red-500">*</span></label>
-                <input type="date" name="dob"
-                       class="w-full px-4 py-2.5 border rounded-full shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                <div class="relative">
+                    <input type="date" name="dob"
+                           class="w-full px-4 py-2.5 pr-6 border rounded-full shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                    <span class="absolute right-4 top-1/2 transform -translate-y-1/2 text-red-500">*</span>
+                </div>
             </div>
 
-            <input type="text" name="phone" placeholder="Số điện thoại *"
-                   class="w-full px-4 py-2.5 border rounded-full shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+            <div class="relative">
+                <input type="text" name="phone" placeholder="Số điện thoại"
+                       class="w-full px-4 py-2.5 pr-6 border rounded-full shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                <span class="absolute right-4 top-1/2 transform -translate-y-1/2 text-red-500">*</span>
+            </div>
 
-            <input type="email" name="email" placeholder="Email *"
-                   class="w-full px-4 py-2.5 border rounded-full shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+            <div class="relative">
+                <input type="email" name="email" placeholder="Email"
+                       class="w-full px-4 py-2.5 pr-6 border rounded-full shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                <span class="absolute right-4 top-1/2 transform -translate-y-1/2 text-red-500">*</span>
+            </div>
 
-            <input type="text" name="address" placeholder="Địa chỉ *"
-                   class="w-full px-4 py-2.5 border rounded-full shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+            <div class="relative">
+                <input type="text" name="address" placeholder="Địa chỉ"
+                       class="w-full px-4 py-2.5 pr-6 border rounded-full shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                <span class="absolute right-4 top-1/2 transform -translate-y-1/2 text-red-500">*</span>
+            </div>
 
-            <input type="password" name="password" placeholder="Mật khẩu *"
-                   class="w-full px-4 py-2.5 border rounded-full shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+            <div class="relative">
+                <input type="password" name="password" placeholder="Mật khẩu"
+                       class="w-full px-4 py-2.5 pr-6 border rounded-full shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                <span class="absolute right-4 top-1/2 transform -translate-y-1/2 text-red-500">*</span>
+            </div>
 
-            <input type="password" name="confirmPassword" placeholder="Xác nhận mật khẩu *"
-                   class="w-full px-4 py-2.5 border rounded-full shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+            <div class="relative">
+                <input type="password" name="confirmPassword" placeholder="Xác nhận mật khẩu"
+                       class="w-full px-4 py-2.5 pr-6 border rounded-full shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                <span class="absolute right-4 top-1/2 transform -translate-y-1/2 text-red-500">*</span>
+            </div>
 
             <button type="submit"
                     class="w-full bg-blue-600 text-white py-1.5 rounded-full shadow-md hover:bg-blue-700 transition font-semibold">

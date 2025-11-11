@@ -27,7 +27,7 @@ public class OrderServlet extends HttpServlet {
 
         if (idCustomerStr != null && startDate != null && endDate != null) {
             int idCustomer = Integer.parseInt(idCustomerStr);
-            List<Order> orders = orderDAO.getOrdersByCustomerAndDateRange(idCustomer, startDate, endDate);
+            List<Order> orders = orderDAO.getOrdersByCustomer(idCustomer, startDate, endDate);
 
             request.setAttribute("orders", orders);
             request.setAttribute("idCustomer", idCustomer);

@@ -19,8 +19,13 @@ public class LoginServlet extends HttpServlet {
         String email = request.getParameter("email");
         String password = request.getParameter("password");
 
+        // Đóng gói thông tin đăng nhập vào đối tượng Member
+        Member loginMember = new Member();
+        loginMember.setEmail(email);
+        loginMember.setPassword(password);
+
         MemberDAO memberDAO = new MemberDAO();
-        Member member = memberDAO.checkLogin(email, password);
+        Member member = memberDAO.checkLogin(loginMember);
 
         if (member != null) {
             HttpSession session = request.getSession();

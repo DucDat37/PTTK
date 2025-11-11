@@ -58,11 +58,11 @@ public class MemberDAO extends DAO {
         }
     }
 
-    public Member checkLogin(String email, String password) {
+    public Member checkLogin(Member member) {
         String sql = "SELECT * FROM member WHERE email = ? AND password = ?";
         try (PreparedStatement ps = conn.prepareStatement(sql)) {
-            ps.setString(1, email);
-            ps.setString(2, password);
+            ps.setString(1, member.getEmail());
+            ps.setString(2, member.getPassword());
 
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
